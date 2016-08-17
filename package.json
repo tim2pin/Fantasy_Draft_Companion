@@ -20,9 +20,21 @@
   },
   "homepage": "https://github.com/tim2pin/Fantasy_Draft_Companion#readme",
   "dependencies": {
+    "bootstrap3": "^3.3.5",
+    "cheerio": "^0.20.0",
+    "dsv-loader": "^1.1.0",
     "hjs-webpack": "^8.3.0",
+    "jquery": "^3.1.0",
+    "json-loader": "^0.5.4",
+    "papaparse": "^4.1.2",
+    "radium": "^0.18.1",
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-burger-menu": "^1.10.4",
+    "react-dom": "^15.3.0",
+    "react-reorder": "^2.0.0",
+    "react-reorderable": "^0.2.3",
+    "react-router": "^2.6.1",
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
