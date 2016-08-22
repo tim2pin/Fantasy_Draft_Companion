@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Button, Checkbox, Navbar, Nav, NavItem, NavDropdown, MenuItem, Accordion, Panel, Collapse, Well, Table, form, FormGroup, FormControl } from 'react-bootstrap';
+import { Button, Tooltip, Checkbox, Navbar, Nav, NavItem, NavDropdown, MenuItem, Accordion, Panel, Collapse, Well, Table, form, FormGroup, FormControl } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 
 export default class PlayerRankingItem extends Component {
   constructor(props) {
@@ -11,25 +12,14 @@ export default class PlayerRankingItem extends Component {
     }
   }
 
-// handleNoteChange(note){
-//   var newValueArray = Array.prototype.slice.call(this.state.value);
-//   newValueArray.push({value: note});
-//   this.setState({value: newValueArray});
-// }
-// handleNoteSubmit(e){
-//   e.preventDefault();
-//   this.props.onSubmit.bind(this)(this.state.value)
-// }
- 
-
   render() {
    return (
     <div>
       <Button style={{width:'100%', textAlign:'left'}} onClick={ ()=> this.setState({ open: !this.state.open })}>
           {this.props.rank} | {this.props.name} {this.props.teamPOS}
-        </Button>
-        <Collapse in={this.state.open}>
-        <div>
+      </Button>
+      <Collapse in={this.state.open}>
+      <div>
     <Well>
     <Checkbox inline>Target</Checkbox>
     <Checkbox inline>Avoid</Checkbox>
@@ -114,14 +104,14 @@ export default class PlayerRankingItem extends Component {
          
           />
       </FormGroup>
-      <Button type="submit">
+      <Button bsStyle="primary" type="submit">
         Save
       </Button>
     </form>
     </Well>
       </div>
       </Collapse>
-      </div>
+    </div>
 
     );
   }

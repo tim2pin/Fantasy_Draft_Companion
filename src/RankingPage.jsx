@@ -1,32 +1,73 @@
 import React, { Component } from 'react';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import $ from 'jquery';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
-
+import Horizon from '@horizon/client';
+import {notes} from './stores.jsx';
 import PlayerRankingItem from './PlayerRankingItem.jsx';
 
 const playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
 console.log("player data:", playerData);
 
-//buyxyguy6v9kxdrbrwx92pgy
-
-//RANK,PLAYER,TEAMPOS,CA,PASSYDS,PASSTD,INT,RUSH,RUSHYDS,RUSHTD,REC,RECYDS,RECTD,PTS
 
 export default class RankingPage extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     notes: [],
+  //   }
+  //   this.setState({notes:notes})
+  // }
+  //   notes.watch().subscribe((results) => {
+  //     this.setState({
+  //       noteList: results,
+  //     })
+  //   })
+  // }
+  // handleNewNote(note) {
+  //   notes.store({
+  //     noteList: note
+  //   })
+  // }
+  handleHomeClick(e){
+    e.preventDefault()
+    browserHistory.push('/')
+  }
+  handleMyTeamClick(e){
+    e.preventDefault()
+    browserHistory.push('/MyTeam')
+  }
+
+  handleRankingsClick(e){
+    e.preventDefault()
+    browserHistory.push('/Rankings')
+  }
+
+  handleDraftDayClick(e){
+    e.preventDefault()
+    browserHistory.push('/Draft')
+  }
+
+  handleResearchClick(e){
+    e.preventDefault()
+    browserHistory.push('/Research')
+  }
+
   render() {
     return (
       <div>
       <Navbar inverse>
         <Navbar.Header>
-          <Navbar.Brand>Draft Depot</Navbar.Brand>
+          <Navbar.Brand onClick={this.handleHomeClick.bind(this)}>Draft Depot</Navbar.Brand>
           <Navbar.Toggle />
           </Navbar.Header>
       <Navbar.Collapse>
       <Nav>
-        <MenuItem eventKey={2.1}>My Team</MenuItem>
-        <MenuItem eventKey={2.2}>My Rankings</MenuItem>
-        <MenuItem eventKey={2.3}>Draft Day</MenuItem>
-        <MenuItem eventKey={2.4}>Research</MenuItem>
+        <MenuItem onClick={this.handleMyTeamClick.bind(this)}>My Team</MenuItem>
+        <MenuItem onClick={this.handleRankingsClick.bind(this)}>My Rankings</MenuItem>
+        <MenuItem onClick={this.handleDraftDayClick.bind(this)}>Draft Day</MenuItem>
+        <MenuItem onClick={this.handleResearchClick.bind(this)}>Research</MenuItem>
       </Nav>
       </Navbar.Collapse>
       </Navbar>
@@ -59,6 +100,7 @@ export default class RankingPage extends Component {
                 LYrecYds={player.LYRECYDS}
                 LYrecTds={player.LYRECTD}
                 LYpoints={player.LYPTS}
+                // notes={this.state.notes}
               />
             )
           })}
