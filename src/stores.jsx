@@ -20,6 +20,6 @@ const horizon = Horizon({
   host: host
 });
 
-const notes = horizon('noteList');
+const chat = horizon('comments');
 
-export {notes};
+export {chat};

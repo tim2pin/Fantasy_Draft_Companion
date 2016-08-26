@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import DraftPlayerItem from './DraftPlayerItem';
+import DraftPlayerItem from './DraftPlayerItem.jsx';
+import RankingPage from './RankingPage.jsx';
+
 
 export default class DraftPlayerList extends Component {
+
   render() {
-    return (
-      <div>
-        <div>this the draft playr list:</div>
-        <DraftPlayerItem />
-        <DraftPlayerItem />
-        <DraftPlayerItem />
-      </div>
-    );
+    return(
+        <div>
+          <RankingPage />
+        </div>
+    )
   }
 }
+

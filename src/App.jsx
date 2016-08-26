@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import globalStyles from './assets/styles/global.css';
-
 import $ from 'jquery';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
@@ -12,7 +11,12 @@ import MyTeam from './MyTeam.jsx'
 import RankingPage from './RankingPage.jsx';
 import DraftPage from './DraftPage.jsx';
 import ResearchPage from './ResearchPage.jsx';
+import PlayerRankingItem from './PlayerRankingItem.jsx';
 import NoMatch from './NoMatch.jsx';
+
+var Sortable = require('react-anything-sortable');
+import { SortableContainer, handleSort } from 'react-anything-sortable';
+
 
 class App extends Component {
   handleMyTeamClick(e){
@@ -35,7 +39,6 @@ class App extends Component {
     browserHistory.push('/Research')
   }
 
-
   render() {
     return (
       <div>
@@ -53,7 +56,7 @@ class App extends Component {
       </Nav>
       </Navbar.Collapse>
       </Navbar>
-      <Jumbotron>
+      <Jumbotron style={{padding:'15px'}}>
         <h1>Welcome to Draft Depot</h1>
         <p>Lorem ipsum Occaecat laborum Excepteur sunt esse sit culpa dolore mollit nisi aliquip amet fugiat nisi ut ut nulla cillum elit mollit ut dolore aute dolore aliquip voluptate.Lorem ipsum Dolor pariatur ea ea commodo Duis in aliquip consectetur veniam nisi aute. Lorem ipsum Aliqua velit nostrud in Ut exercitation aute in ea consequat magna quis dolore dolor quis sed cupidatat ullamco Excepteur laborum culpa nulla sit labore in sint esse exercitation ad sed in dolor reprehenderit.</p>
         <p><Button bsStyle="primary">Learn more</Button></p>
@@ -72,5 +75,6 @@ ReactDOM.render(
     <Route path="/Research" component= { ResearchPage } />
     <Route path="*" component= { NoMatch} />
   </Router>,
+  
   document.getElementById('root')
 );

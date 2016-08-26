@@ -8,10 +8,10 @@ export default class ResearchListing extends Component {
   render() {
     return (
       <div>
-        {this.props.items.map(function(item) {
+        {this.props.items.map(function(item, i) {
           return (
             <div>
-              <ResearchItem title={item.data.title} url={item.data.url} />
+              <ResearchItem key={i} title={item.data.title} url={item.data.url} />
             </div>
           )
         })}

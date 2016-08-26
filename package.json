@@ -5,8 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "hjs-dev-server",
-    "build": "webpack"
+    "start": "npm-run-all --parallel serve:dev:server serve:dev:client",
+    "start:prod": "npm run schema:restore && npm run serve:prod",
+    "deploy": "npm run schema:dump && npm run schema:commit && git push deploy -f",
+    "build:dev": "webpack",
+    "build:prod": "NODE_ENV=production webpack",
+    "serve:dev:client": "hjs-dev-server",
+    "serve:dev:server": "hz serve --dev",
+    "serve:prod": "node ./util/server/express.js",
+    "schema:commit": "git add ./.hz/schema.toml >/dev/null || true && git commit -m \"Updated DB Schema\" ./.hz/schema.toml >/dev/null || true",
+    "schema:dump": "hz get-schema -o ./.hz/schema.toml",
+    "schema:restore": "hz set-schema ./.hz/schema.toml --connect $(./util/scripts/parseurl.sh $RETHINKDB_URL)"
   },
   "repository": {
     "type": "git",
@@ -31,10 +40,12 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "npm-run-all": "^3.0.0",
     "papaparse": "^4.1.2",
     "radium": "^0.18.1",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
+    "react-anything-sortable": "^1.6.1",
     "react-bootstrap": "^0.30.2",
     "react-burger-menu": "^1.10.4",
     "react-dom": "^15.3.0",
@@ -43,6 +54,7 @@
     "react-reorderable": "^0.2.3",
     "react-router": "^2.6.1",
     "react-sortable": "^1.0.3",
+    "react-sortable-list": "^1.0.3",
     "request": "^2.74.0"
   },
   "devDependencies": {

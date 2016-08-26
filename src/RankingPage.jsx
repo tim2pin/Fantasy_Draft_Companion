@@ -1,35 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import $ from 'jquery';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Horizon from '@horizon/client';
-import {notes} from './stores.jsx';
+import {chat} from './stores.jsx';
 import PlayerRankingItem from './PlayerRankingItem.jsx';
+import { Sortable, handleSort } from 'react-anything-sortable';
 
-const playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
+var playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
 console.log("player data:", playerData);
 
-
 export default class RankingPage extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     notes: [],
-  //   }
-  //   this.setState({notes:notes})
-  // }
-  //   notes.watch().subscribe((results) => {
-  //     this.setState({
-  //       noteList: results,
-  //     })
-  //   })
-  // }
-  // handleNewNote(note) {
-  //   notes.store({
-  //     noteList: note
-  //   })
-  // }
   handleHomeClick(e){
     e.preventDefault()
     browserHistory.push('/')
@@ -56,26 +38,13 @@ export default class RankingPage extends Component {
 
   render() {
     return (
-      <div>
-      <Navbar inverse>
-        <Navbar.Header>
-          <Navbar.Brand onClick={this.handleHomeClick.bind(this)}>Draft Depot</Navbar.Brand>
-          <Navbar.Toggle />
-          </Navbar.Header>
-      <Navbar.Collapse>
-      <Nav>
-        <MenuItem onClick={this.handleMyTeamClick.bind(this)}>My Team</MenuItem>
-        <MenuItem onClick={this.handleRankingsClick.bind(this)}>My Rankings</MenuItem>
-        <MenuItem onClick={this.handleDraftDayClick.bind(this)}>Draft Day</MenuItem>
-        <MenuItem onClick={this.handleResearchClick.bind(this)}>Research</MenuItem>
-      </Nav>
-      </Navbar.Collapse>
-      </Navbar>
-          {playerData.map((player) => {
-            return (
-              <PlayerRankingItem 
-                key={player.id}
-                rank={player.RANK} 
+          <div>
+          <Sortable onSort={handleSort}>
+           {playerData.map((player, i) => {
+            return ( <PlayerRankingItem
+
+                key={i}
+                rank={i + 1} 
                 name={player.PLAYER} 
                 teamPOS={player.TEAMPOS}
                 passAtt={player.CA}
@@ -99,15 +68,12 @@ export default class RankingPage extends Component {
                 LYreceptions={player.LYREC}
                 LYrecYds={player.LYRECYDS}
                 LYrecTds={player.LYRECTD}
-                LYpoints={player.LYPTS}
-                // notes={this.state.notes}
-              />
-            )
-          })}
-      </div>
-    );
+                LYpoints={player.LYPTS} />
+                )})} 
+          </Sortable>
+          </div>
+        )}
   }
-}
 
 
 

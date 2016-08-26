@@ -45,7 +45,11 @@ export default class ResearchPage extends Component {
           <MenuItem onClick={this.handleResearchClick.bind(this)}>Research</MenuItem>
         </Nav>
         </Navbar.Collapse>
-        </Navbar> 
+        </Navbar>
+          <Jumbotron style={{paddingLeft:'15px'}}>
+            <h1>Research</h1>
+            <p>The latest Fantasy Football news and discussion.</p>
+            </Jumbotron> 
         <ResearchFetcher />
       </div>
     );
