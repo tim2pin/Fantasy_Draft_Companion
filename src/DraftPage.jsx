@@ -2,50 +2,39 @@ import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import DraftPlayerList from './DraftPlayerList.jsx'
 import $ from 'jquery';
-// import jquery from 'jquery';
-// import bootstrap from 'bootstrap';
-// import jqueryui from 'jquery-ui';
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from 'react-bootstrap';
+import {chat} from './stores.jsx';
 
 
 export default class DraftPage extends Component {
-
-
   handleHomeClick(e){
     e.preventDefault()
     browserHistory.push('/')
-  }
-  handleMyTeamClick(e){
-    e.preventDefault()
-    browserHistory.push('/MyTeam')
-  }
-
-  handleRankingsClick(e){
-    e.preventDefault()
-    browserHistory.push('/Rankings')
-  }
-
-  handleDraftDayClick(e){
-    e.preventDefault()
-    browserHistory.push('/Draft')
-  }
-
-  handleResearchClick(e){
-    e.preventDefault()
-    browserHistory.push('/Research')
   }
 
   render() {
     return (
       <div>
- 
-
+        <Navbar inverse>
+        <Navbar.Header>
+          <Navbar.Brand onClick={this.handleHomeClick.bind(this)}>Draft Depot</Navbar.Brand>
+          <Navbar.Toggle />
+          </Navbar.Header>
+        <Navbar.Collapse>
+        <Nav>
+        <MenuItem href="/MyTeam">My Team</MenuItem>
+        <MenuItem href="/Rankings">My Rankings</MenuItem>
+        <MenuItem href="/Draft">Draft Day</MenuItem>
+        <MenuItem href="/Research">Research</MenuItem>
+        <MenuItem href="http://smacktalk.tiy.mn">Smack Board </MenuItem>
+        </Nav>
+        </Navbar.Collapse>
+        </Navbar>
+      <Jumbotron style={{paddingLeft:'15px'}}>
+          <h1>My Draft</h1>
+          <p>Draft players to your team and remove already drafted players</p>
+        </Jumbotron>
         <DraftPlayerList/>
-
-
-
-        
-
       </div>
     );
   }

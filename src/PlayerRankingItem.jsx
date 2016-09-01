@@ -6,6 +6,7 @@ import Horizon from '@horizon/client';
 import {chat} from './stores.jsx';
 import PlayerNote from './PlayerNote.jsx';
 import SortableContainer from 'react-anything-sortable';
+import globalStyles from './assets/styles/global.css';
 
 export default class PlayerRankingItem extends Component {
   constructor(props) {
@@ -17,9 +18,10 @@ export default class PlayerRankingItem extends Component {
     }
   }
 
-handleNewComment(comment) {
+handleNewComment(comment, playerName) {
     chat.store({
-      comment: comment, 
+      comment: comment,
+      playerName: playerName 
     })
   }
 
@@ -27,7 +29,7 @@ render() {
    return (
     <SortableContainer>
       <Button style={{width:'100%', textAlign:'left',fontSize:'14px',}} onClick={ ()=> this.setState.bind(this)({ open: !this.state.open })}>
-         <strong> {this.props.rank} | {this.props.name} {this.props.teamPOS}</strong><Glyphicon style={{float:'right'}} glyph="align-justify" />
+         <strong>{this.props.name} {this.props.teamPOS}</strong><Glyphicon style={{float:'right'}} glyph="align-justify" />
       </Button>
       <Collapse in={this.state.open}>
       <div>
@@ -39,29 +41,39 @@ render() {
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Passing</td>
         <td>{this.props.passYds} Yards</td>
+        <td></td>
         <td>{this.props.passTds} TDs</td>
+        <td></td>
         <td>{this.props.ints} INTs</td>
       </tr>
       <tr>
         <td>Rushing</td>
         <td>{this.props.rushAtt} Attempts</td>
+        <td></td>
         <td>{this.props.rushYds} Yards</td>
+        <td></td>
         <td>{this.props.rushTds} TDs</td>
       </tr>
       <tr>
         <td>Receiving</td>
         <td>{this.props.receptions} Receptions</td>
+        <td></td>
         <td>{this.props.recYds} Yards</td>
+        <td></td>
         <td>{this.props.recTds} TDs</td>
       </tr>
       <tr>
         <td><strong>Total</strong></td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td><strong>{this.props.points} Points</strong></td>
@@ -75,29 +87,39 @@ render() {
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Passing</td>
         <td>{this.props.LYpassYds} Yards</td>
+        <td></td>
         <td>{this.props.LYpassTds} TDs</td>
+        <td></td>
         <td>{this.props.LYints} INTs</td>
       </tr>
       <tr>
         <td>Rushing</td>
         <td>{this.props.LYrushAtt} Attempts</td>
+        <td></td>
         <td>{this.props.LYrushYds} Yards</td>
+        <td></td>
         <td>{this.props.LYrushTds} TDs</td>
       </tr>
       <tr>
         <td>Receiving</td>
         <td>{this.props.LYreceptions} Receptions</td>
+        <td></td>
         <td>{this.props.LYrecYds} Yards</td>
+        <td></td>
         <td>{this.props.LYrecTds} TDs</td>
       </tr>
       <tr>
         <td><strong>Total</strong></td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td><strong>{this.props.LYpoints} Points</strong></td>
@@ -105,7 +127,7 @@ render() {
     </tbody>
     </Table>
     <Well>
-        <PlayerNote onNewComment={this.handleNewComment.bind(this)} />      
+        <PlayerNote playerName={this.props.name} onNewComment={this.handleNewComment.bind(this)} />      
     </Well>
     
     </Well>

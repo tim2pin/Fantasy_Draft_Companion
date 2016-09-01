@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import $ from 'jquery';
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Horizon from '@horizon/client';
 import {chat} from './stores.jsx';
 import PlayerRankingItem from './PlayerRankingItem.jsx';
-import { Sortable, handleSort } from 'react-anything-sortable';
+import ReactSortable from './SortableList.jsx'
 
 var playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
 console.log("player data:", playerData);
@@ -16,33 +16,10 @@ export default class RankingPage extends Component {
     e.preventDefault()
     browserHistory.push('/')
   }
-  handleMyTeamClick(e){
-    e.preventDefault()
-    browserHistory.push('/MyTeam')
-  }
-
-  handleRankingsClick(e){
-    e.preventDefault()
-    browserHistory.push('/Rankings')
-  }
-
-  handleDraftDayClick(e){
-    e.preventDefault()
-    browserHistory.push('/Draft')
-  }
-
-  handleResearchClick(e){
-    e.preventDefault()
-    browserHistory.push('/Research')
-  }
-
+  
   render() {
-    return (
-          <div>
-          <Sortable onSort={handleSort}>
-           {playerData.map((player, i) => {
-            return ( <PlayerRankingItem
-
+    const playerList = playerData.map((player, i) => (<PlayerRankingItem
+                data-id={player.PLAYER}
                 key={i}
                 rank={i + 1} 
                 name={player.PLAYER} 
@@ -68,13 +45,35 @@ export default class RankingPage extends Component {
                 LYreceptions={player.LYREC}
                 LYrecYds={player.LYRECYDS}
                 LYrecTds={player.LYRECTD}
-                LYpoints={player.LYPTS} />
-                )})} 
-          </Sortable>
-          </div>
-        )}
-  }
-
-
-
-
+                LYpoints={player.LYPTS} />));
+    return (
+      <div>
+        <Navbar inverse>
+        <Navbar.Header>
+          <Navbar.Brand onClick={this.handleHomeClick.bind(this)}>Draft Depot</Navbar.Brand>
+          <Navbar.Toggle />
+          </Navbar.Header>
+        <Navbar.Collapse>
+        <Nav>
+        <MenuItem href="/MyTeam">My Team</MenuItem>
+        <MenuItem href="/Rankings">My Rankings</MenuItem>
+        <MenuItem href="/Draft">Draft Day</MenuItem>
+        <MenuItem href="/Research">Research</MenuItem>
+        <MenuItem href="http://smacktalk.tiy.mn">Smack Board </MenuItem>
+        </Nav>
+        </Navbar.Collapse>
+        </Navbar>
+        <Jumbotron style={{padding:'15px'}}>
+          <h1>My Rankings</h1>
+          <p>Customize your player rankings and take player notes.</p>
+        </Jumbotron>
+        <div>
+          <ReactSortable
+            tag="div" // Defaults to "div"
+            >
+              {playerList}
+          </ReactSortable>
+        </div>
+      </div>
+    )}
+}

@@ -9,25 +9,6 @@ export default class ResearchPage extends Component {
     e.preventDefault()
     browserHistory.push('/')
   }
-  handleMyTeamClick(e){
-    e.preventDefault()
-    browserHistory.push('/MyTeam')
-  }
-
-  handleRankingsClick(e){
-    e.preventDefault()
-    browserHistory.push('/Rankings')
-  }
-
-  handleDraftDayClick(e){
-    e.preventDefault()
-    browserHistory.push('/Draft')
-  }
-
-  handleResearchClick(e){
-    e.preventDefault()
-    browserHistory.push('/Research')
-  }
 
   render() {
     return (
@@ -39,10 +20,11 @@ export default class ResearchPage extends Component {
           </Navbar.Header>
         <Navbar.Collapse>
         <Nav>
-          <MenuItem onClick={this.handleMyTeamClick.bind(this)}>My Team</MenuItem>
-          <MenuItem onClick={this.handleRankingsClick.bind(this)}>My Rankings</MenuItem>
-          <MenuItem onClick={this.handleDraftDayClick.bind(this)}>Draft Day</MenuItem>
-          <MenuItem onClick={this.handleResearchClick.bind(this)}>Research</MenuItem>
+        <MenuItem href="/MyTeam">My Team</MenuItem>
+        <MenuItem href="/Rankings">My Rankings</MenuItem>
+        <MenuItem href="/Draft">Draft Day</MenuItem>
+        <MenuItem href="/Research">Research</MenuItem>
+        <MenuItem href="http://smacktalk.tiy.mn">Smack Board </MenuItem>
         </Nav>
         </Navbar.Collapse>
         </Navbar>

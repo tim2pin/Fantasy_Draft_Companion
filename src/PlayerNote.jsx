@@ -12,14 +12,14 @@ export default class PlayerNote extends Component {
       value: '',
       comments: [],
     }
-    chat.watch().subscribe((results) => {
+    chat.findAll({playerName:this.props.playerName}).watch().subscribe((results) => {
       this.setState({
         comments: results,
       })
     })
   }
-  handleDelete(e) {
-      chat.remove(this.props.id)
+  handleDelete(id, e) {
+      chat.remove(id)
     }
 
   handleChange(e) {
@@ -29,7 +29,7 @@ export default class PlayerNote extends Component {
 
   handleSubmit(e) {
   e.preventDefault();
-    this.props.onNewComment.bind(this)(this.state.value);
+    this.props.onNewComment.bind(this)(this.state.value, this.props.playerName);
   }
 
   render() {
@@ -38,24 +38,25 @@ export default class PlayerNote extends Component {
       <form onSubmit={this.handleSubmit.bind(this)}>
       <FormGroup>
         <FormControl
-         type="text"
-         placeholder="Player Notes"
-         onChange={this.handleChange.bind(this)}
+
+          type="text"
+          placeholder="Add a player note"
+          onChange={this.handleChange.bind(this)}
           />
         <FormControl.Feedback />
-      <Radio inline style={{marginTop:'20px'}}>Target</Radio>
-      <Radio inline style={{marginTop:'20px'}}>Avoid</Radio>
+
       </FormGroup>
-      <Button bsStyle="primary" type="submit">
+      <Button bsSize="xsmall" bsStyle="primary" type="submit">
         Save
       </Button>
       <h4>Notes:</h4>
     </form>
     <div>
       {this.state.comments.map((note, i) => {
+        console.log(note)
         return(
           <div>
-            <div id={note.id} key={i}> {note.comment} <Button onClick={this.handleDelete.bind(this)} type="submit">delete</Button></div>
+            <div key={i} id={note.id}> {note.comment} <Button style={{float:'right'}} bsStyle='danger' bsSize='xsmall' onClick={this.handleDelete.bind(this, note.id)} type="submit">delete</Button></div>
           </div>
         )}
       )} 

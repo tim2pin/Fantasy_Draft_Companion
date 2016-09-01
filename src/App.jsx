@@ -19,46 +19,32 @@ import { SortableContainer, handleSort } from 'react-anything-sortable';
 
 
 class App extends Component {
-  handleMyTeamClick(e){
+  handleHomeClick(e){
     e.preventDefault()
-    browserHistory.push('/MyTeam')
-  }
-
-  handleRankingsClick(e){
-    e.preventDefault()
-    browserHistory.push('/Rankings')
-  }
-
-  handleDraftDayClick(e){
-    e.preventDefault()
-    browserHistory.push('/Draft')
-  }
-
-  handleResearchClick(e){
-    e.preventDefault()
-    browserHistory.push('/Research')
+    browserHistory.push('/')
   }
 
   render() {
     return (
       <div>
-      <Navbar inverse>
+        <Navbar inverse>
         <Navbar.Header>
-          <Navbar.Brand>Draft Depot</Navbar.Brand>
+          <Navbar.Brand onClick={this.handleHomeClick.bind(this)}>Draft Depot</Navbar.Brand>
           <Navbar.Toggle />
           </Navbar.Header>
-      <Navbar.Collapse>
-      <Nav>
-        <MenuItem onClick={this.handleMyTeamClick.bind(this)}>My Team</MenuItem>
-        <MenuItem onClick={this.handleRankingsClick.bind(this)}>My Rankings</MenuItem>
-        <MenuItem onClick={this.handleDraftDayClick.bind(this)}>Draft Day</MenuItem>
-        <MenuItem onClick={this.handleResearchClick.bind(this)}>Research</MenuItem>
-      </Nav>
-      </Navbar.Collapse>
-      </Navbar>
+        <Navbar.Collapse>
+        <Nav>
+        <MenuItem href="/MyTeam">My Team</MenuItem>
+        <MenuItem href="/Rankings">My Rankings</MenuItem>
+        <MenuItem href="/Draft">Draft Day</MenuItem>
+        <MenuItem href="/Research">Research</MenuItem>
+        <MenuItem href="http://smacktalk.tiy.mn">Smack Board </MenuItem>
+        </Nav>
+        </Navbar.Collapse>
+        </Navbar>
       <Jumbotron style={{padding:'15px'}}>
         <h1>Welcome to Draft Depot</h1>
-        <p>Lorem ipsum Occaecat laborum Excepteur sunt esse sit culpa dolore mollit nisi aliquip amet fugiat nisi ut ut nulla cillum elit mollit ut dolore aute dolore aliquip voluptate.Lorem ipsum Dolor pariatur ea ea commodo Duis in aliquip consectetur veniam nisi aute. Lorem ipsum Aliqua velit nostrud in Ut exercitation aute in ea consequat magna quis dolore dolor quis sed cupidatat ullamco Excepteur laborum culpa nulla sit labore in sint esse exercitation ad sed in dolor reprehenderit.</p>
+        <p>Tired of listening to the so called 'experts' fantasy football advice? Draft Depot is the tool you've been looking for. Customize your own rankings and research to give yourself the upper hand on draft day.</p>
         <p><Button bsStyle="primary">Learn more</Button></p>
       </Jumbotron>
       </div>
@@ -75,6 +61,5 @@ ReactDOM.render(
     <Route path="/Research" component= { ResearchPage } />
     <Route path="*" component= { NoMatch} />
   </Router>,
-  
   document.getElementById('root')
 );

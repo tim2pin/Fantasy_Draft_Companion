@@ -21,5 +21,6 @@ const horizon = Horizon({
 });
 
 const chat = horizon('comments');
+const stars = horizon('stars');
 
-export {chat};
+export {chat, stars};

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DraftPlayerItem from './DraftPlayerItem.jsx';
-import RankingPage from './RankingPage.jsx';
+var playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
 
 
 export default class DraftPlayerList extends Component {
@@ -8,8 +8,9 @@ export default class DraftPlayerList extends Component {
   render() {
     return(
         <div>
-          <RankingPage />
+          <DraftPlayerItem />
         </div>
+ 
     )
   }
 }
