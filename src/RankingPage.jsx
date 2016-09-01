@@ -5,8 +5,8 @@ import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from '
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Horizon from '@horizon/client';
 import {chat} from './stores.jsx';
-import PlayerRankingItem from './PlayerRankingItem.jsx';
-import ReactSortable from './SortableList.jsx'
+import RankingList from './RankingList.jsx';
+import ReactSortable from './SortableList.jsx';
 
 var playerData = require('dsv!./assets/data/playerRankingsProjections.csv');
 console.log("player data:", playerData);
@@ -18,35 +18,7 @@ export default class RankingPage extends Component {
   }
   
   render() {
-    const playerList = playerData.map((player, i) => (<PlayerRankingItem
-                data-id={player.PLAYER}
-                key={i}
-                rank={i + 1} 
-                name={player.PLAYER} 
-                teamPOS={player.TEAMPOS}
-                passAtt={player.CA}
-                passYds={player.PASSYDS}
-                passTds={player.PASSTD}
-                ints={player.INT}
-                rushAtt={player.RUSH}
-                rushYds={player.RUSHYDS}
-                rushTds={player.RUSHTD}
-                receptions={player.REC}
-                recYds={player.RECYDS}
-                recTds={player.RECTD}
-                points={player.PTS}
-                LYpassAtt={player.LYCA}
-                LYpassYds={player.LYPASSYDS}
-                LYpassTds={player.LYPASSTD}
-                LYints={player.LYINT}
-                LYrushAtt={player.LYRUSH}
-                LYrushYds={player.LYRUSHYDS}
-                LYrushTds={player.LYRUSHTD}
-                LYreceptions={player.LYREC}
-                LYrecYds={player.LYRECYDS}
-                LYrecTds={player.LYRECTD}
-                LYpoints={player.LYPTS} />));
-    return (
+    return(
       <div>
         <Navbar inverse>
         <Navbar.Header>
@@ -68,11 +40,7 @@ export default class RankingPage extends Component {
           <p>Customize your player rankings and take player notes.</p>
         </Jumbotron>
         <div>
-          <ReactSortable
-            tag="div" // Defaults to "div"
-            >
-              {playerList}
-          </ReactSortable>
+          <RankingList />
         </div>
       </div>
     )}

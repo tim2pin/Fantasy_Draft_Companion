@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
-import globalStyles from './assets/styles/global.css';
+//import globalStyles from '../assets/styles/global.css';
+//import FontAwesome from '../assets/styles/font-awesome.css';
 import $ from 'jquery';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from 'react-bootstrap';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';

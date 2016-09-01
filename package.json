@@ -49,6 +49,7 @@
     "react-bootstrap": "^0.30.2",
     "react-burger-menu": "^1.10.4",
     "react-dom": "^15.3.1",
+    "react-fontawesome": "^1.1.0",
     "react-jqueryui-accordion": "^1.0.6",
     "react-reorder": "^2.0.0",
     "react-reorderable": "^0.2.3",

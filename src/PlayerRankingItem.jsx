@@ -18,7 +18,7 @@ export default class PlayerRankingItem extends Component {
     }
   }
 
-handleNewComment(comment, playerName) {
+  handleNewComment(comment, playerName) {
     chat.store({
       comment: comment,
       playerName: playerName 
@@ -29,10 +29,10 @@ render() {
    return (
     <SortableContainer>
       <Button style={{width:'100%', textAlign:'left',fontSize:'14px',}} onClick={ ()=> this.setState.bind(this)({ open: !this.state.open })}>
-         <strong>{this.props.name} {this.props.teamPOS}</strong><Glyphicon style={{float:'right'}} glyph="align-justify" />
+         <strong> {this.props.name} {this.props.teamPOS}</strong><Glyphicon style={{float:'right'}} glyph="align-justify" />
       </Button>
       <Collapse in={this.state.open}>
-      <div>
+    <div>
     <Well>
     <Table striped responsive>
     <thead>
@@ -129,11 +129,10 @@ render() {
     <Well>
         <PlayerNote playerName={this.props.name} onNewComment={this.handleNewComment.bind(this)} />      
     </Well>
-    
     </Well>
-      </div>
-      </Collapse>
-      </SortableContainer>
+    </div>
+    </Collapse>
+    </SortableContainer>
     );
   }
 }

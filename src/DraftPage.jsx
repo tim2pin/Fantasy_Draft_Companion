@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
-import DraftPlayerList from './DraftPlayerList.jsx'
+import DraftPlayerList from './DraftPlayerList.jsx';
+//import PlayerRankingItem from './PlayerRankingItem.jsx';
+import RankingList from './RankingList.jsx';
 import $ from 'jquery';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Jumbotron } from 'react-bootstrap';
 import {chat} from './stores.jsx';
@@ -30,12 +32,21 @@ export default class DraftPage extends Component {
         </Nav>
         </Navbar.Collapse>
         </Navbar>
-      <Jumbotron style={{paddingLeft:'15px'}}>
+        <Jumbotron style={{paddingLeft:'15px'}}>
           <h1>My Draft</h1>
           <p>Draft players to your team and remove already drafted players</p>
         </Jumbotron>
-        <DraftPlayerList/>
+        <RankingList />
       </div>
     );
   }
 }
+
+
+// {PlayerRankingItem.map((player) => (
+//             <DraftPlayerList
+//               name={player.name}
+
+
+
+//              />))}

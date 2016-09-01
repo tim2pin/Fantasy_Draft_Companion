@@ -46,17 +46,19 @@ export default class PlayerNote extends Component {
         <FormControl.Feedback />
 
       </FormGroup>
-      <Button bsSize="xsmall" bsStyle="primary" type="submit">
-        Save
+      <div style={{textAlign:'center'}}>
+      <Button style={{fontSize:'15px', width:'100px', marginTop:'5px'}} bsSize="xsmall" bsStyle="primary" type="submit">
+        Save Note
       </Button>
-      <h4>Notes:</h4>
+      </div>
+      <h4 style={{textAlign:'center', marginTop:'25px'}}><u>Notes:</u></h4>
     </form>
     <div>
       {this.state.comments.map((note, i) => {
         console.log(note)
         return(
           <div>
-            <div key={i} id={note.id}> {note.comment} <Button style={{float:'right'}} bsStyle='danger' bsSize='xsmall' onClick={this.handleDelete.bind(this, note.id)} type="submit">delete</Button></div>
+            <div key={i} id={note.id}> {note.comment} <Button bsStyle='danger' bsSize='xsmall' onClick={this.handleDelete.bind(this, note.id)} type="submit">X</Button></div>
           </div>
         )}
       )} 
